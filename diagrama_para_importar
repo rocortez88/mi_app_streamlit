@@ -1,0 +1,38 @@
+digraph "Flujo de la Aplicación de Análisis" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Flujo de la Aplicación de Análisis" nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"8427893b837e41aa879e016df3990ca7" [label="Fuente de Datos
+(Excel)" fillcolor=lightgreen shape=cylinder style=filled]
+	"300dfbfa64014c889666504646644878" -> "2733d30e79884c129bf5db3de3cafbca" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"2733d30e79884c129bf5db3de3cafbca" -> f29d8653aed7420f8432087d2a72f222 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f29d8653aed7420f8432087d2a72f222 -> "64477dd23a5a4defa7b6f42537f70c6c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"64477dd23a5a4defa7b6f42537f70c6c" -> "040d3d17a79a4c52844214ed2d57f978" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"040d3d17a79a4c52844214ed2d57f978" -> "4af1649c30314e2491c5496df5d2d10b" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_App Streamlit (app_streamlit.py)" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="App Streamlit (app_streamlit.py)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		ec69d27a0be941f4a471bc4acc4c7873 [label="Inicio de la App
+(Streamlit)" fillcolor=lightblue shape=box style=filled]
+		subgraph "cluster_Barra Lateral de Filtros" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Barra Lateral de Filtros" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"33ab122d73c94d228c4310d2a2b48289" [label="Controles Interactivos
+(Checkboxes, Selectores)" shape=box3d]
+		}
+		subgraph "cluster_Página Principal (Contenido Dinámico)" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Página Principal (Contenido Dinámico)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"300dfbfa64014c889666504646644878" [label="Métrica: Total de Casos" shape=oval]
+			"2733d30e79884c129bf5db3de3cafbca" [label="Tabla de Detalle de Casos" shape=note]
+			subgraph "cluster_Secciones de Análisis" {
+				graph [bgcolor="#ECE8F6" fontname="Sans-Serif" fontsize=12 label="Secciones de Análisis" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+				f29d8653aed7420f8432087d2a72f222 [label="Gráficos de Barras" shape=component]
+				"64477dd23a5a4defa7b6f42537f70c6c" [label="Tabla Resumen
+(Zona y Fecha)" shape=note]
+				"040d3d17a79a4c52844214ed2d57f978" [label="Tabla Cajas Repetidas" shape=note]
+				"4af1649c30314e2491c5496df5d2d10b" [label="Tabla Tareas Finalizadas" shape=note]
+			}
+		}
+	}
+	"8427893b837e41aa879e016df3990ca7" -> ec69d27a0be941f4a471bc4acc4c7873 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	ec69d27a0be941f4a471bc4acc4c7873 -> "33ab122d73c94d228c4310d2a2b48289" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"33ab122d73c94d228c4310d2a2b48289" -> "300dfbfa64014c889666504646644878" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
